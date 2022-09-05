@@ -23,22 +23,53 @@ class HashTable {
 	}
 
 	get(key) {
-		const address = this._hash(key);
+		let address = this._hash(key);
+		console.log(
+			'🚀 ~ file: index.js ~ line 91 ~ HashTable ~ get ~ address',
+			address
+		);
 		const currentBucket = this.data[address];
+		const result = [];
 
 		if (currentBucket) {
 			for (let index = 0; index < currentBucket.length; index++) {
-				if (currentBucket[index][0] === key) return currentBucket[index][1];
+				result.push(currentBucket[index][1]);
 			}
+			return result;
 		}
 
 		return undefined;
+	}
+
+	getKeys() {
+		if (!this.data.length) return undefined;
+
+		let result = [];
+
+		for (let index = 0; index < this.data.length; index++) {
+			if (this.data[index] && this.data[index].length) {
+				if (this.data.length > 1) {
+					for (
+						let collisionKey = 0;
+						collisionKey < this.data[index].length;
+						collisionKey++
+					) {
+						result.push(this.data[index][collisionKey][0]);
+					}
+				} else {
+					result.push(this.data[i][0]);
+				}
+			}
+		}
+		return result;
 	}
 }
 
 const myHashTable = new HashTable(50);
 myHashTable.set('grapes', 10000);
-myHashTable.set('grapes', 10000);
-myHashTable.get('grapes');
+myHashTable.set('grapes', 20000);
+myHashTable.set('grapes', 22000);
+myHashTable.set('oranges', 20000);
 myHashTable.set('apples', 9);
-console.log(myHashTable.get('apples'));
+console.log(myHashTable.get('oranges'));
+console.log(myHashTable.getKeys());
