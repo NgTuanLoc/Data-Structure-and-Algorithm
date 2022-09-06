@@ -106,7 +106,6 @@ class LinkedList {
 			first = second;
 			second = temp;
 		}
-		this.head.next = null;
 		this.head = first;
 	}
 }
