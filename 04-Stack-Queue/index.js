@@ -6,41 +6,40 @@ class MyNode {
 }
 // STACKS
 
-// // Stack
-// class Stack {
-// 	constructor() {
-// 		this.top = null;
-// 		this.bottom = null;
-// 		this.length = 0;
-// 	}
+class Stack {
+	constructor() {
+		this.top = null;
+		this.bottom = null;
+		this.length = 0;
+	}
 
-// 	peek() {
-// 		return this.top;
-// 	}
+	peek() {
+		return this.top;
+	}
 
-// 	push(value) {
-// 		const newNode = new MyNode(value);
-// 		if (!this.length) {
-// 			this.top = newNode;
-// 			this.bottom = newNode;
-// 		} else {
-// 			const tempNode = this.top;
-// 			this.top = newNode;
-// 			this.top.next = tempNode;
-// 		}
-// 		this.length++;
-// 		return this;
-// 	}
+	push(value) {
+		const newNode = new MyNode(value);
+		if (!this.length) {
+			this.top = newNode;
+			this.bottom = newNode;
+		} else {
+			const tempNode = this.top;
+			this.top = newNode;
+			this.top.next = tempNode;
+		}
+		this.length++;
+		return this;
+	}
 
-// 	pop() {
-// 		if (!this.length) return null;
-// 		if (this.bottom === this.top) this.bottom = null;
+	pop() {
+		if (!this.length) return null;
+		if (this.bottom === this.top) this.bottom = null;
 
-// 		this.top = this.top.next;
-// 		this.length--;
-// 		return this;
-// 	}
-// }
+		this.top = this.top.next;
+		this.length--;
+		return this;
+	}
+}
 
 // class Stack {
 // 	constructor() {
@@ -75,27 +74,67 @@ class MyNode {
 // console.log('🚀 ~ file: index.js ~ line 40 ~ myStack', myStack);
 
 // QUEUES
+// class Queues {
+// 	constructor() {
+// 		this.first = null;
+// 		this.last = null;
+// 		this.length = 0;
+// 	}
+
+// 	peek() {
+// 		return this.first;
+// 	}
+
+// 	enqueue(value) {
+// 		const newNode = new MyNode(value);
+
+// 		if (!this.length) {
+// 			this.first = newNode;
+// 			this.last = newNode;
+// 		} else {
+// 			const temp = this.last;
+// 			this.last = newNode;
+// 			temp.next = newNode;
+// 		}
+
+// 		this.length++;
+// 		return this;
+// 	}
+
+// 	dequeue() {
+// 		if (!this.length) return null;
+
+// 		if (this.first === this.last) this.last = null;
+
+// 		this.first = this.first.next;
+
+// 		this.length--;
+// 		return this;
+// 	}
+// }
+
 class Queues {
 	constructor() {
-		this.first = null;
-		this.last = null;
+		this.first = new Stack();
+		this.last = new Stack();
 		this.length = 0;
 	}
 
 	peek() {
-		return this.first;
+		return this.last.peek();
 	}
 
 	enqueue(value) {
 		const newNode = new MyNode(value);
 
 		if (!this.length) {
-			this.first = newNode;
-			this.last = newNode;
+			this.first.push(newNode);
+			this.last.push(newNode);
 		} else {
-			const temp = this.last;
-			this.last = newNode;
-			temp.next = newNode;
+			for (let index = 0; index < this.first.length; index++) {
+				this.last.push(this.first.pop());
+			}
+			this.last.push(newNode);
 		}
 
 		this.length++;
@@ -105,9 +144,10 @@ class Queues {
 	dequeue() {
 		if (!this.length) return null;
 
-		if (this.first === this.last) this.last = null;
-
-		this.first = this.first.next;
+		for (let index = 0; index < this.last.length; index++) {
+			this.first.push(this.last.pop());
+		}
+		this.first.pop();
 
 		this.length--;
 		return this;
@@ -125,6 +165,5 @@ myQueue.enqueue('d');
 myQueue.dequeue();
 myQueue.dequeue();
 myQueue.dequeue();
-// myQueue.dequeue();
 
-console.log('🚀 ~ file: index.js ~ line 122 ~ myQueue', myQueue);
+console.log('🚀 ~ file: index.js ~ line 170 ~ myQueue', myQueue);
