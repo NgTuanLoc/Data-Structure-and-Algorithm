@@ -24,10 +24,6 @@ class HashTable {
 
 	get(key) {
 		let address = this._hash(key);
-		console.log(
-			'🚀 ~ file: index.js ~ line 91 ~ HashTable ~ get ~ address',
-			address
-		);
 		const currentBucket = this.data[address];
 		const result = [];
 
