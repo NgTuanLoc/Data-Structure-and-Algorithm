@@ -17,8 +17,7 @@ const exponent = (base, exp) => {
 };
 
 console.clear();
-// console.log(factorial(5));
-// console.log(fibonacci(19));
+console.log(factorial(5));
+console.log(fibonacci(19));
 console.log(exponent(8, 3));
 
-console.log(8 ** 3);
