@@ -85,7 +85,7 @@ class MyNode {
 // 						}
 // 					}
 
-// 					//Option 2: Right child which doesnt have a left child
+// 					//Option 2: Right child which doesn't have a left child
 // 				} else if (currentNode.right.left === null) {
 // 					currentNode.right.left = currentNode.left;
 // 					if (parentNode === null) {
