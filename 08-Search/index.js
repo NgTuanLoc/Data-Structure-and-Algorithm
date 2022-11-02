@@ -5,24 +5,20 @@ console.clear();
 const binarySearch = (array, target) => {
 	let low = 0;
 	let high = array.length - 1;
-	let mid = 0;
+	let mid = Math.floor((low + high) / 2);
 
 	while (low < high) {
-		mid = Math.floor((low + high) / 2);
 		console.log(`${low}-${mid}-${high}`);
-		if (array[mid] === target) {
-			return mid;
-		} else if (array[mid] < target) {
-			low = mid + 1;
-		} else if (array[mid] > target) {
-			high = mid - 1;
-		}
+		if (array[mid] === target) return mid;
+		if (array[mid] > target) high = mid - 1;
+		if (array[mid] < target) low = mid + 1;
+
+		mid = Math.floor((low + high) / 2);
 	}
 	console.log(`${low}-${mid}-${high}`);
-	return array[high] < target ? mid + 1 : low;
+	return array[high] < target ? mid : low;
 };
-
-console.log(test[binarySearch(test, 543)]);
+console.log(test[binarySearch(test, -45)]);
 
 // console.log(test[binarySearch(test, -111)]);
 

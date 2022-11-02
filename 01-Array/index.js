@@ -4,6 +4,24 @@ console.log('================================');
 const arr = [-23, 3, 13, -2, 312, -1, 2, 4134, -3];
 const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
+const binarySearch = (arr, target) => {
+	let left = 0;
+	let right = arr.length - 1;
+	let mid = Math.floor((right + left) / 2);
+
+	while (left < right) {
+		if (arr[mid] === target) return arr[mid];
+		if (arr[mid] > target) right = mid - 1;
+		if (arr[mid] < target) left = mid + 1;
+
+		mid = mid = Math.floor((right + left) / 2);
+	}
+
+	return arr[mid];
+};
+
+console.log(binarySearch(arr1, 7));
+
 // const test = () => {
 // 	console.log('A');
 
@@ -36,33 +54,34 @@ const arr1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10];
 
 // console.log('Ended');
 
+// PROMISE ALL
 // asyncTest();
-const p1 = new Promise((resolve, reject) => {
-	setTimeout(() => resolve(1), 1000);
-});
-const p2 = new Promise((resolve, reject) => {
-	setTimeout(() => resolve(2), 2000);
-});
-const p3 = new Promise((resolve, reject) => {
-	setTimeout(() => resolve(3), 3000);
-});
-const p4 = new Promise((resolve, reject) => {
-	setTimeout(() => resolve(4), 4000);
-});
-const p5 = new Promise((resolve, reject) => {
-	resolve(5);
-	// setTimeout(() => reject(new Error('reject')), 5000);
-});
+// const p1 = new Promise((resolve, reject) => {
+// 	setTimeout(() => resolve(1), 1000);
+// });
+// const p2 = new Promise((resolve, reject) => {
+// 	setTimeout(() => resolve(2), 2000);
+// });
+// const p3 = new Promise((resolve, reject) => {
+// 	setTimeout(() => resolve(3), 3000);
+// });
+// const p4 = new Promise((resolve, reject) => {
+// 	setTimeout(() => resolve(4), 4000);
+// });
+// const p5 = new Promise((resolve, reject) => {
+// 	resolve(5);
+// 	// setTimeout(() => reject(new Error('reject')), 5000);
+// });
 
-// Using .catch:
-Promise.all([p1, p2, p3, p4, p5])
-	.then((values) => {
-		console.log(values);
-		return values.map((item) => item + 3);
-	})
-	.then((values) => {
-		console.log(values);
-	})
-	.catch((error) => {
-		console.error(error.message);
-	});
+// // Using .catch:
+// Promise.all([p1, p2, p3, p4, p5])
+// 	.then((values) => {
+// 		console.log(values);
+// 		return values.map((item) => item + 3);
+// 	})
+// 	.then((values) => {
+// 		console.log(values);
+// 	})
+// 	.catch((error) => {
+// 		console.error(error.message);
+// 	});
